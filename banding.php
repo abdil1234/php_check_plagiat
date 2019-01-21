@@ -1,37 +1,32 @@
 <?php
-
 require_once 'upload.php';
-
 class validation {
 	
 	public function check_name_length($object) {
 		
-		if (mb_strlen($object->file['original_filename']) > 5) {
+		if (mb_strlen($object->file['original_filename']) > 100) {
 			
 			$object->set_error('File name is too long.');
 			
 		}
-
 	}
 	
 }
-
-
 if (!empty($_FILES['test'])) {
 	
-	$upload = Upload::factory('important/files');
+	$upload = Upload::factory('upload/important/banding');
 	$upload->file($_FILES['test']);
 	
 	$validation = new validation;
 	
 	$upload->callbacks($validation, array('check_name_length'));
 	
-	$results = $upload->upload();
+	$results = $upload->upload('file_banding.txt');
 	
-	var_dump($results);
+    var_dump($results);
+    echo "<a href='index.php'> Kembali</a>";
 	
 }
-
 ?>
 
 

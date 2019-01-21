@@ -262,15 +262,21 @@ class Upload {
 		if(empty($this->filename)){
 			$this->create_new_filename();
 		}
-
 		//set filename
 		$this->file['filename']	= $this->filename;
-
 		//set full path
 		$this->file['full_path'] = $this->root . $this->destination . $this->filename;
-        	$this->file['path'] = $this->destination . $this->filename;
+		$this->file['path'] = $this->destination . $this->filename;
+		
+		$allowed =  array('txt');
+		$ext = pathinfo($this->file['post_data']['name'], PATHINFO_EXTENSION);
 
-		$status = move_uploaded_file($this->tmp_name, $this->file['full_path']);
+		if(!in_array($ext,$allowed) ) {
+			throw new Exception('Upload: gagal type file.');
+		}else{
+			$status = move_uploaded_file($this->tmp_name, $this->file['full_path']);
+
+		}
 
 		//checks whether upload successful
 		if (!$status) {
@@ -299,6 +305,7 @@ class Upload {
 			'original_filename'		=> $this->file_post['name'],
 			'tmp_name'				=> $this->file_post['tmp_name'],
 			'post_data'				=> $this->file_post,
+			'type' => 'txt'
 		);
 
 	}
