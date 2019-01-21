@@ -24,8 +24,7 @@ if (!empty($_FILES['test'])) {
     $results = $upload->upload('file_banding.txt');
     
 	
-    var_dump($results);
-    echo "<a href='index.php'> Kembali</a>";
+    header('Location: index.php');
 	
 }
 ?>
