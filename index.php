@@ -31,11 +31,8 @@ if (!empty($_FILES['test'])) {
 	
 	$upload->callbacks($validation, array('check_name_length'));
 	$old_new_file = dirname(__FILE__)."/important/files/file_pembanding.txt";
-	if(unlink($old_new_file)){
-		$results = $upload->upload('file_pembanding.txt');
-	}else{
-		die("Gagal hapus");
-	}
+	$results = $upload->upload('file_pembanding.txt');
+	
 	$get_new = file_get_contents($results['full_path']);
 	$size_new = $results['size_in_bytes'];
 	$panjang_new = strlen($get_new)." Karakter";
