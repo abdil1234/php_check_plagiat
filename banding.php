@@ -18,10 +18,14 @@ if (!empty($_FILES['test'])) {
 	$upload->file($_FILES['test']);
 	
 	$validation = new validation;
-	
-	$upload->callbacks($validation, array('check_name_length'));
-	
-	$results = $upload->upload('file_banding.txt');
+	$old_file = dirname(__FILE__)."/important/banding/file_banding.txt";
+    $upload->callbacks($validation, array('check_name_length'));
+    
+	if(unlink($old_file)){
+        $results = $upload->upload('file_banding.txt');
+    }else{
+		die("Gagal hapus");
+	}
 	
     var_dump($results);
     echo "<a href='index.php'> Kembali</a>";
