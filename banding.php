@@ -14,7 +14,7 @@ class validation {
 }
 if (!empty($_FILES['test'])) {
 	
-	$upload = Upload::factory('upload/important/banding');
+	$upload = Upload::factory('check_file/important/banding');
 	$upload->file($_FILES['test']);
 	
 	$validation = new validation;

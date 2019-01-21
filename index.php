@@ -24,7 +24,7 @@ $size_new = "0 byte";
 
 if (!empty($_FILES['test'])) {
 	
-	$upload = Upload::factory('upload/important/files');
+	$upload = Upload::factory('check_file/important/files');
 	$upload->file($_FILES['test']);
 	
 	$validation = new validation;
