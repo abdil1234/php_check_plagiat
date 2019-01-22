@@ -1,11 +1,7 @@
 <?php
 
 
-/**
- * Simple PHP upload class
- *
- * @author Aivis Silins
- */
+
 class Upload {
 
 
